@@ -1,3 +1,5 @@
+// Day 3 Part 1
+
 const path = require('path');
 const fs = require('fs');
 
@@ -31,3 +33,29 @@ for (const line of input) {
 
 console.log(totalScore);
 
+// Day 3 Part 2
+
+const input2 = fs
+    .readFileSync(path.join(__dirname, 'input.txt'), 'utf8')
+    .toString()
+    .split('\n')
+;
+
+let score2 = 0;
+let totalScore2 = 0;
+
+for(let i =0; i < input2.length; i+=3) {
+    let first = input2[i];
+    let second = input2[i + 1];
+    let third = input2[i + 2];
+    for (const char of first) {
+        if (second.includes(char)) {
+            if (third.includes(char)) {
+                score2 = getCharScore(char);
+            }
+        }
+    }
+    totalScore2 += score2;
+};
+
+console.log(totalScore2)
